@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+@import "_lib/variable";
+
+@import "common";
+@import "_components/fv";
+
+
+//-------------------------
+//brand
+//-------------------------
+.brand {
+    &__item {
+        padding: 50px 0;
+        @include sp {
+           padding: 6vw 0; 
+        }
+        &:nth-child(odd) {
+            background: #f7f7f7;
+        }
+    }
+    &__ad {
+        margin-bottom: 50px;
+        @include sp {
+            margin-bottom: 6vw;
+        }
+    }
+    &__title {
+        width: $width-wrap;
+        margin: 0 auto;
+        font-size: 28px;
+        padding-bottom: 5px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid $color-text2;
+        text-align: center;
+        @include sp {
+            width: auto;
+            font-size: 5vw;
+            margin: 0 2vw 3vw;
+        }
+    }
+    &__body {
+        width: $width-wrap;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 17px;
+        line-height: 1.8;
+        @include sp {
+            width: 100%;
+            font-size: 3.5vw;
+            padding: 0 2vw;
+        }
+        > p, > div, > ul {
+            margin-bottom: 40px;
+            @include sp {
+                margin-bottom: 3vw;
+            }
+        }
+        .ast {
+            font-size: 0.8em;
+        }
+    }
+}
+.flex {
+    @include pc {
+        display: flex;
+        justify-content: center;
+    }
+    &__text {
+        @include sp {
+            br {
+                display: none;
+            }
+        }
+        @include pc {
+            flex: 0 1 auto;
+            text-align: left;
+        }
+        p {
+            margin-bottom: 40px;
+            @include sp {
+                margin-bottom: 3vw;
+            }
+        }
+    }
+    &__photo {
+        @include sp {
+            width: 25vw;
+            margin: 5vw auto 0;
+        }
+        @include pc {
+            flex: 0 0 150px;
+            margin-left: 50px; 
+        }
+        img {
+            width: 100%;
+        }
+    }
+}
+.media {
+    display: flex;
+    justify-content: center;
+    @include sp {
+        margin: 5vw 0 3vw;
+    }
+    &__item {
+        width: 100px;
+        height: 100px;
+        @include hover;
+        @include sp {
+            width: 15vw;
+            height: 15vw;
+        }
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            @include sp {
+                border-radius: 2vw;
+            }
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        &:hover {
+            opacity: .8;
+        }
+        & + & {
+            margin-left: 30px;
+            @include sp {
+                margin-left: 6vw;
+            }
+        }
+    }
+}

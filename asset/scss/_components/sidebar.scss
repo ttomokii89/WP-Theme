@@ -1,0 +1,163 @@
+@charset "utf-8";
+
+@import "../_lib/variable";
+
+
+//-------------------------
+//sidebar
+//-------------------------
+
+.sidebar {
+	position: relative;
+    @include sp {
+        padding: 0 3.3vw 8vw;
+    }
+    &--index{
+        .google-auto-placed{
+            display: none !important;
+        }
+    }
+	&__item {
+		& + & {
+			margin-top: 40px;
+		}
+		&.is-sticky {
+			position: sticky;
+			top: 0;
+            @include sp {
+                display: none;
+            }
+		}
+        > p + p{
+            margin-top: 5px;
+        }
+	}
+	&__item-title {
+		font-size: 17px;
+		border-bottom: 1px solid #ccc;
+		margin-bottom: 20px;
+        @include sp {
+            font-size: 4.4vw;
+            margin-bottom: 5vw;
+        }
+	}
+	&__ad {
+		height: 250px;
+	}
+	&__ad-l {
+		height: 600px;
+	}
+}
+.category-list {
+	&__item {
+		display: inline-block;
+		line-height: 1.8;
+		&:not(:last-child) {
+			margin-right: 7px;
+		}
+	}
+}
+.archive-list {
+	position: relative;
+    background: #fff;
+	&__select {
+		position: relative;
+		width: 100%;
+		padding: 7px;
+		border: 1px solid $color-line;
+		border-radius: 1px;
+		color: $color-text;
+		appearance: none;
+		line-height: 1;
+		background: transparent;
+		cursor: pointer;
+	}
+	&::before {
+		content: "▼";
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 11%;
+		height: 100%;
+		border-radius: 0 1px 1px 0;
+		background: $color-line;
+		color: #fff;
+		font-size: 0.5em;
+	}
+}
+
+
+//-------------------------
+//media-list
+//-------------------------
+
+.media-list {
+    display: flex;
+    justify-content: space-between;
+    &__item {
+        flex: 0 0 18%;
+        border-radius: 2px;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+
+//-------------------------
+//article-list
+//-------------------------
+
+.article-list {
+	$root: &;
+	$root__item-hover: ();
+	&__item {
+		&:hover {
+			$root__item-hover: &;
+		}
+		& + & {
+			margin-top: 15px;
+		}
+		> a {
+			display: flex;
+			align-items: center;
+		}
+	}
+	&__thumb {
+		flex: 0 0 80px;
+		height: 60px;
+		@include sp {
+			flex: 0 0 24vw;
+			height: 18vw;
+		}
+		@include hover;
+		#{$root__item-hover} & {
+			filter: brightness(80%);
+		}
+		> img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__title {
+		color: $color-text0;
+		@include pc {
+			flex: 0 1 220px;
+			padding-left: 10px;
+			font-size: 12.5px;
+		}
+		@include sp {
+			flex: 0 1 auto;
+			padding-left: 2.5vw;
+		}
+		@include hover;
+		#{$root__item-hover} & {
+			color: $color-link;
+		}
+	}
+}

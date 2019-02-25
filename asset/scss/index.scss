@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@import "_lib/variable";
+
+@import "common";
+@import "_components/fv";
+@import "_components/entry-list";
+@import "_components/sidebar";
+
+.readmore {
+    margin: 20px auto 40px;
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    @include sp {
+        margin: 1vw 5vw 0 5vw;
+        font-size: 3.9vw;
+    }
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 5px;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        border-color: $color-link;
+        transform: rotate(45deg);
+        &:hover {
+            @include hover;
+            border-color: $color-linkHover;
+        }
+    }
+}
