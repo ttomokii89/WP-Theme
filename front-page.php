@@ -75,7 +75,7 @@
 <?php endforeach; endif; ?>
 		</ul>
         <a class="readmore" href="/category/lostmortal">Read More</a>
-        
+<?php if(!$is_sp): ?>
         <div class="entry-list entry-list--index">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <ins class="adsbygoogle"
@@ -88,7 +88,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
+<?php endif; ?>
 <?php
     $blog_arg = array(
         'posts_per_page' => 12,
