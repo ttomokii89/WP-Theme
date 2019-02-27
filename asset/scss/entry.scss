@@ -66,6 +66,7 @@ $padding-entry-sp: 3vw;
 		}
 		@include sp {
 			padding: 6vw 3vw 0;
+            font-size: 3.85vw;
 		}
 	}
 	&__meta {
@@ -77,7 +78,7 @@ $padding-entry-sp: 3vw;
 		}
 		@include sp {
 			padding: 3.5vw 3vw 0;
-			font-size: 3vw;
+			font-size: 3.5vw;
 		}
 	}
 	&__time {
@@ -119,7 +120,7 @@ $padding-entry-sp: 3vw;
 		@include sp {
 			padding: 0 3vw;
 			margin: 6vw 0;
-            font-size: 3.7vw;
+            font-size: 3.85vw;
 		}
 		h2 {
 			@include h2;
@@ -285,26 +286,53 @@ $padding-entry-sp: 3vw;
 .card-wrapper-inner {
     position: relative;
     display: flex;
+    @include sp {
+        flex-direction: column;
+        padding: 10px !important;
+    }
     .card-content {
+        float: none !important;
+        @include sp {
+            width: 100% !important;
+            margin-bottom: 0 !important;
+            height: 3em !important;
+        }
         .card-description {
             display: none;
+        }
+        .card-title {
+            @include sp {
+                max-height: none !important;
+                font-size: 3.9vw !important;
+            }
         }
     }
     .thumb-wrapper {
         margin: 0 !important;
+        @include sp {
+            float: none !important;
+            margin-left: auto !important;
+            width: 30% !important;
+        }
     }
     .card-footer {
-        margin: 0!important;
-        padding: 0!important;
+        position: absolute !important;
+        margin: 0 !important;
+        padding: 0 !important;
         display: flex;
         align-items: center;
         @include pc {
-            position: absolute!important;
             bottom: 12px;
             left: 12px;
         }
         @include sp {
-            position: static;
+            bottom: 8px;
+            left: 10px;
+            width: 70%;
+            font-size: 3.3vw !important;
+            img {
+                display: none !important;
+            }
         }
         .read-amp {
             display: flex;
@@ -312,9 +340,9 @@ $padding-entry-sp: 3vw;
             justify-content: center;
             width: 31px;
             height: 14px;
-            margin: 0 0 0 10px!important;
-            padding: 0!important;
-            font-size: 10px!important;
+            margin: 0 0 0 10px !important;
+            padding: 0 !important;
+            font-size: 10px !important;
         }
         img {
             display: block;

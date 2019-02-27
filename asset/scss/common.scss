@@ -92,7 +92,7 @@ b,em,strong {
 			flex: 0 0 180px;
 		}
 		@include sp {
-			flex: 0 0 30vw;
+			flex: 0 0 32vw;
 		}
 	}
 	&__menu-btn {
@@ -110,8 +110,8 @@ b,em,strong {
             height: 24px;
 		}
 		@include sp {
-			width: 5vw;
-			height: 5vw;
+			width: 6vw;
+			height: 6vw;
 		}
         &:focus {
             outline: none;
