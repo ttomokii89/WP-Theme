@@ -1,0 +1,304 @@
+@import "../_lib/variable";
+
+
+//-------------------------
+//sidebar
+//-------------------------
+
+.sidebar {
+	position: relative;
+    @include tb {
+        margin: 50px 20px;
+    }
+    @include sp {
+        padding: 0 15px 30px;
+    }
+	&__item {
+        @include pc {
+            padding: 20px;
+            background: #fff;
+        }
+		& + & {
+			margin-top: 40px;
+            @include sp {
+                margin-top: 30px;
+            }
+		}
+		&.is-sticky {
+			position: sticky;
+			top: 0;
+            text-align: center;
+            @include sp {
+                display: none;
+            }
+		}
+        > p {
+            @include sp {
+                line-height: 1.7;
+            }
+        }
+	}
+	&__item-title {
+		border-bottom: 1px solid #ccc;
+		margin-bottom: 20px;
+        padding-bottom: 2px;
+        @include pc {
+            margin-top: -3px;
+            font-size: 17px;
+        }
+        @include tb {
+            font-size: 22px;
+        }
+        @include sp {
+            margin-bottom: 20px;
+        }
+	}
+	&__ad {
+		height: 250px;
+	}
+	&__ad-l {
+		height: 600px;
+	}
+}
+.profile {
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    border-bottom: 1px solid $color-line2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+    }
+    &__name {
+        flex: 0 0 auto;
+        margin: 0 10px;
+        text-align: center;
+        span {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+    }
+    &__link {
+        margin-top: 9px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        a {
+            position: relative;
+            margin-top: 6px;
+            flex: 0 0 49%;
+            $bg1: lighten($color-link, 15%);
+            $bg2: desaturate($bg1, 10%);
+            background: $bg2;
+            padding: 7px 0;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1;
+            &::after {
+                content: '';
+                position: absolute;
+                right: 7px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                width: 0;
+                height: 0;
+                border-top: 4px solid transparent;
+                border-right: 0;
+                border-bottom: 4px solid transparent;
+                border-left: 4px solid #fff; 
+            }
+        }
+    }
+}
+.category-list {
+    margin-top: -10px;
+    &__item {
+        border-bottom: 1px solid $color-line3;
+    }
+    &__link {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 6px 0;
+        @include sp {
+            padding: 10px 0;
+        }
+        &::before{
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 0;
+            border-left: 6px solid $color-text2;
+        }
+    }
+    &__child {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 6px 0;
+        margin-left: 1em;
+        border-top: 1px solid $color-line2;
+        font-size: 13.5px;
+        @include sp {
+            padding: 10px 0;
+        }
+        &::before{
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 0;
+            border-left: 6px solid $color-text2;
+        }
+    }
+    &__name {
+        margin-right: auto;
+        padding-left: 5px;
+        font-weight: bold;
+    }
+    &__count{
+        margin-left: auto;
+    }
+}
+.tag-list {
+    margin-top: -8px;
+	&__item {
+		display: inline-block;
+        margin-top: 8px;
+        line-height: 1;
+		&:not(:last-child) {
+			margin-right: 6px;
+		}
+        a {
+            display: block;
+            $bg1: lighten($color-link, 15%);
+            $bg2: desaturate($bg1, 10%);
+            background: $bg2;
+            padding: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+        }
+	}
+}
+.archive-list {
+	position: relative;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    height: 34px;
+	&__select {
+        appearance: none;
+		position: relative;
+		width: 100%;
+        height: 100%;
+        margin: 0;
+		padding: 7px;
+		border: 1px solid $color-line;
+		border-radius: 1px;
+        outline: 0;
+        background: transparent;
+        font-size: 16px;
+		appearance: none;
+		line-height: 1;
+		cursor: pointer;
+        &::-ms-expand{
+            display: none;
+        }
+	}
+	&::before {
+		content: "▼";
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 11%;
+		height: 100%;
+		border-radius: 0 1px 1px 0;
+		background: $color-line;
+		color: #fff;
+		font-size: 0.5em;
+	}
+}
+
+
+//-------------------------
+//media-list
+//-------------------------
+
+.media-title {
+    margin-bottom: 8px;
+    line-height: 1;
+    .media-list + & {
+        margin-top: 20px;
+    }
+}
+.media-list {
+    display: flex;
+    justify-content: space-between;
+    &__item {
+        border-radius: 2px;
+        overflow: hidden;
+    }
+}
+
+
+//-------------------------
+//article-list
+//-------------------------
+
+.article-list {
+	&__item {
+		& + & {
+			margin-top: 15px;
+		}
+		> a {
+			display: flex;
+			align-items: center;
+		}
+        @include pc {
+            transition: .2s;
+            &:hover {
+                opacity: .9;
+            }
+        }
+	}
+	&__thumb {
+		flex: 0 0 90px;
+		height: 60px;
+		> img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__title {
+        color: $color-text0;
+		@include pc {
+			flex: 0 1 210px;
+			padding-left: 10px;
+			font-size: 12.5px;
+		}
+        @include tb {
+            font-size: 18px;
+            padding-left: 10px;
+        }
+		@include sp {
+			flex: 0 1 auto;
+			padding-left: 10px;
+            font-size: 14px;
+		}
+	}
+}

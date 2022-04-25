@@ -1,0 +1,108 @@
+$imgPath: '/wp-content/themes/jtts/asset/img/';
+
+
+//-------------------------
+//サイズ雛形
+//-------------------------
+
+$width-main: 680px;
+$width-sidebar: 340px;
+$width-column-gap: 40px;
+$width-wrap: $width-main + $width-sidebar + $width-column-gap;
+
+
+//-------------------------
+//レスポンシブ
+//-------------------------
+
+//ブレイクポイント
+$pc: $width-wrap;
+$sp: 640px;
+
+@mixin pc {
+  @media (min-width: ($pc)) {
+    @content;
+  }
+}
+@mixin tb {
+  @media (max-width: ($pc)) and (min-width: ($sp)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+
+//-------------------------
+//カラーパレット
+//-------------------------
+
+$color-bg: #f1f1f1;
+$color-text0: #000;
+$color-text: #111;
+$color-text2: #333;
+$color-text3: #666;
+$color-textLight: #e5e5e5;
+//$color-link: #df7080;
+$color-link: #0c50c7;
+$color-linkLight: lighten($color-link, 20%);
+$color-linkHover: darken($color-link, 20%);
+$color-link2: #3878e7;
+$color-line: #aaa;
+$color-line2: #e1e1e1;
+$color-line3: #ccc;
+$color-dark: #222;
+$color-light: #f0f0f0;
+
+$shadow-block: 1px 1px 1px 0 rgba(128,128,128,.05);
+$shadow-header: 0 1px 1px rgba(0,0,0,.1);
+
+
+//-------------------------
+//見出し雛形
+//-------------------------
+
+@mixin h2 {
+    padding: 10px;
+	border-left: 6px solid $color-link2;
+    background: $color-light;
+	line-height: 1.5;
+    font-size: 24px;
+	@include sp {
+		padding: 6px;
+		font-size: 18px;
+	}
+}
+@mixin h3 {
+    padding: 4px 0 6px 10px;
+	border-left: 6px solid $color-link2;
+    border-bottom: 1px solid $color-line3;
+	line-height: 1.5;
+    font-size: 24px;
+	@include sp {
+        padding: 3px 0 4px 6px;
+		font-size: 18px;
+	}
+}
+@mixin h4 {
+	padding: 0 0 0 10px;
+	border-left: 6px solid $color-link2;
+	line-height: 1.5;
+    font-size: 19px;
+	@include sp {
+        padding: 0 0 0 6px;
+		font-size: 16px;
+	}
+}
+
+
+//-------------------------
+//その他mixin
+//-------------------------
+
+@mixin hover {
+	transition: .2s;
+}
