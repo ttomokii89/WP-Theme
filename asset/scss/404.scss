@@ -1,0 +1,21 @@
+@import "_lib/variable";
+
+@import "common";
+
+
+//-------------------------
+//404
+//-------------------------
+.content--404{
+    display: block!important;
+}
+.notfound {
+    height: calc(100vh - 191px);
+    text-align: center;
+    font-size: 2rem;
+    @include sp {
+        padding-top: 10vw;
+        height: calc(100vh - 20vw); 
+        font-size: 1.5rem;
+    }
+}

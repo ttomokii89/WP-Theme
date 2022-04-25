@@ -1,33 +1,31 @@
+<?php if(wp_is_mobile()){
+    get_template_part('components/header');
+} ?>
 <div class="fv">
-	<div class="fv__region">
-		<picture>
-			<source class="fv__bg" media="(min-width: 641px)" srcset="<?php bloginfo('template_url'); ?>/asset/img/fv_bg.webp">
-			<img class="fv__bg" src="<?php bloginfo('template_url') ?>/asset/img/fv_bg.jpg" alt="">
-		</picture>
-        <div class="slider" id="js-slider">
-            <div class="slider__wrap">
-                <ul class="slider__list" id="js-slider_list">
-                    <li class="slider__item">
-                        <div class="embed-youtube">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/DEtIr5w_qAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </li>
-                    <li class="slider__item">
-                        <div class="embed-youtube">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/W5-flAkh15I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </li>
-                    <li class="slider__item">
-                        <div class="embed-youtube">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/DWwW_GqnOaY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="slider__arrow slider__arrow--prev" id="js-slider_prev"></div>
-            <div class="slider__arrow slider__arrow--next" id="js-slider_next"></div>
-            <ul class="slider__ctrl" id="js-slider_ctrl">
-            </ul>
-        </div>
-	</div>
+    <picture>
+        <source class="fv__bg" type="image/webp" srcset="<?php bloginfo('template_url'); ?>/asset/img/fv_bg<?php if(wp_is_mobile()): ?>_sp<?php endif; ?>.webp">
+        <img class="fv__bg" src="<?php bloginfo('template_url') ?>/asset/img/fv_bg<?php if(wp_is_mobile()): ?>_sp<?php endif; ?>.jpg" alt="<?php bloginfo('name'); ?>">
+    </picture>
+    <?php if(!wp_is_mobile()): ?>
+    <h1 class="fv__logo">
+        <?php if(isset($_GET['amp'])): ?>
+        <amp-img src="<?php bloginfo('template_url') ?>/asset/img/logo.svg" alt="Lostmortal" width="130" height="13" layout="fixed"></amp-img>
+        <?php else: ?>
+        <img src="<?php bloginfo('template_url') ?>/asset/img/logo.svg" alt="Lostmortal" loading="eager">
+        <?php endif; ?>
+    </h1>
+    <?php endif; ?>
 </div>
+<?php if(!wp_is_mobile()): ?>
+<header class="header header--index">
+    <nav>
+        <ul class="header__menu">
+            <li class="header__menuItem"><a href="/about">About</a></li>
+            <li class="header__menuItem"><a href="/category/lostmortal">Notification</a></li>
+            <li class="header__menuItem"><a href="/blog">Blog</a></li>
+            <li class="header__menuItem"><a href="/music">Discography</a></li>
+            <li class="header__menuItem"><a href="mailto:hardcoreforever777@gmail.com">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<?php endif; ?>

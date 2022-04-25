@@ -1,8 +1,1 @@
-<svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" width="256" height="256" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#fff;}
-</style>
-<g>
-	<polygon class="st0" points="316.508,153.598 316.508,18.616 0,256 316.508,493.384 316.508,358.402 512,358.402 512,153.598"></polygon>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256"><path fill="#fff" d="M316.508 153.598V18.616L0 256l316.508 237.384V358.402H512V153.598z"/></svg>

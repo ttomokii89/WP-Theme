@@ -1,164 +1,140 @@
-@layout('layout.layout')
+<?php get_header(); ?>
 
-@section('title')
-<?php if (is_paged()): ?>
-    <?php echo get_query_var('paged'); ?>ページ目｜
-<?php endif; ?>
-<?php bloginfo( 'name' ); ?>
-@endsection
+<div class="container">
 
-@section('description')
-<?php if (is_paged()): ?>
-    <?php echo get_query_var('paged'); ?>ページ目｜
-<?php endif; ?>
-<?php bloginfo( 'description' ); ?>
-@endsection
-
-@section('ogp')
-<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
-<meta property="og:type" content="website">
-<meta property="og:url" content="<?php echo get_home_url(); ?>">
-<meta property="og:image" content="<?php echo get_home_url(); ?>/wp-content/uploads/2018/08/jksample.jpg">
-<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
-<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="<?php bloginfo( 'name' ); ?>">
-<meta name="twitter:description" content="<?php bloginfo( 'description' ); ?>">
-<meta name="twitter:image" content="<?php echo get_home_url(); ?>/wp-content/uploads/2018/08/jksample.jpg">
-<meta itemprop="image" content="<?php echo get_home_url(); ?>/wp-content/uploads/2018/08/jksample.jpg">
-@endsection
-
-@section('addhead')
-<link rel="alternate" hreflang="ja" href="<?php echo get_home_url(); ?>">
-<link rel="alternate" hreflang="en" href="<?php echo get_home_url(); ?>/en">
-@endsection
-
-@section('content')
-
-<?php if (!$is_sp) { get_template_part('components/fv'); } ?>
 <main class="content content--index">
-	<div class="main-column">
+<div class="main-column">
+        
+<?php //おすすめ
+    $sticky_posts = get_option('sticky_posts');
+    if( $sticky_posts ):
+?>
+    <section class="content-wrap">
+        <h2 class="content-title">おすすめ記事</h2>
+        <ul class="entry-list">
+        <?php 
+            foreach ( $sticky_posts as $post ):
+                setup_postdata( $post );
+                $setting = ['cat'=>false,'date'=>false,'desc'=>true]; //setting
+                set_query_var('setting', $setting); //settingを渡す
+                get_template_part('components/entry-list__item');
+            endforeach; 
+            wp_reset_postdata();
+        ?>
+        </ul>
+    </section>
+<?php endif; ?>
 
-<?php
-    if ($is_sp) {$news_no = 2;} else {$news_no = 3;}
+<?php //お知らせ
     $news_arg = array(
-        'posts_per_page' => $news_no,
-        'category_name' => 'lostmortal'
+        'posts_per_page' => 2,
+        'category_name' => 'lostmortal',
+        'suppress_filters'=> false
     );
     $news_posts = get_posts( $news_arg );
     if( $news_posts ):
 ?>
-        <h1 class="content-title">Information</h1>
-		<ul class="entry-list entry-list--news">
-<?php
-    foreach ( $news_posts as $post ) :
-        setup_postdata( $post ); 
-?>
-			<li class="entry-list__item">
-                <div class="entry-list__thumb">
-	<?php if (has_post_thumbnail()): ?>
-					<?php the_post_thumbnail('thumbnail'); ?>
-	<?php else: ?>
-                    <img data-src="<?php echo get_template_directory_uri(); ?>/asset/img/noimg.svg" alt="" class="lazyload">
-	<? endif; ?>
-				</div>
-                <section class="entry-list__info">
-                    <h2 class="entry-list__title"><?php the_title(); ?></h2>
-                    <div class="entry-list__meta">
-                        <time class="entry-list__time" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>">
-                            <?php echo get_the_date(); ?>
-                        </time>
-                    </div>
-                </section>
-				<a class="entry-list__link" href="<?php the_permalink(); ?>"></a>
-			</li>
-<?php endforeach; endif; ?>
-		</ul>
-        <a class="readmore" href="/category/lostmortal">Read More</a>
-<?php if(!$is_sp): ?>
-        <div class="entry-list entry-list--index">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-fm-5o+kp+8r-1uw"
-                 data-ad-client="ca-pub-1872274200889143"
-                 data-ad-slot="2834828978"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+    <section class="content-wrap">
+        <h2 class="content-title">Notification/お知らせ</h2>
+        <ul class="entry-list">
+        <?php 
+            foreach ( $news_posts as $post ):
+                setup_postdata( $post );
+                $setting = ['cat'=>false,'date'=>true,'desc'=>false]; //setting
+                set_query_var('setting', $setting); //settingを渡す
+                get_template_part('components/entry-list__item');
+            endforeach;
+            wp_reset_postdata();
+        ?>
+        </ul>
+        <a class="readmore" href="/category/lostmortal">もっと見る</a>
+    </section>
 <?php endif; ?>
-<?php
+
+<?php //セール情報
+    $sale_arg = array(
+        'posts_per_page' => 2,
+        'category_name' => 'sale',
+        'suppress_filters'=> false
+    );
+    $sale_posts = get_posts( $sale_arg );
+    if( $sale_posts ):
+?>
+<section class="content-wrap">
+    <h2 class="content-title">Sale/セール情報</h2>
+    <ul class="entry-list entry-list--index">
+    <?php 
+        foreach ( $sale_posts as $post ):
+            setup_postdata( $post );
+            $setting = ['cat'=>false,'date'=>true,'desc'=>false]; //setting
+            set_query_var('setting', $setting); //settingを渡す
+            get_template_part('components/entry-list__item');
+        endforeach;
+        wp_reset_postdata();
+    ?>
+    </ul>
+    <a class="readmore" href="/category/sale">もっと見る</a>
+</section>
+<?php endif; ?>
+
+<?php //ブログ
     $blog_arg = array(
         'posts_per_page' => 12,
-        'cat' => '-20'
+        'cat' => '-20, -1207',
+        'suppress_filters'=> false
     );
     $blog_posts = get_posts( $blog_arg );
     if( $blog_posts ):
 ?>
-        <h1 class="content-title">Blog/Column</h1>
-		<ul class="entry-list">
-<?php
-    foreach ( $blog_posts as $post ) :
-        setup_postdata( $post ); 
-?>
-			<li class="entry-list__item">
-                <div class="entry-list__thumb">
-	<?php if (has_post_thumbnail()): ?>
-					<?php the_post_thumbnail('thumbnail'); ?>
-	<?php else: ?>
-                    <img data-src="<?php echo get_template_directory_uri(); ?>/asset/img/noimg.svg" alt="" class="lazyload">
-	<? endif; ?>
-				</div>
-                <section class="entry-list__info">
-                    <h2 class="entry-list__title"><?php the_title(); ?></h2>
-    <?php if(!$is_sp): ?>
-                    <p class="entry-list__excerpt"><?php echo get_the_excerpt(); ?></p>
+    <section class="content-wrap">
+        <h2 class="content-title">Blog/ブログ記事</h2>
+        <ul class="entry-list">
+        <?php
+            foreach ( $blog_posts as $post ):
+                setup_postdata( $post );
+                $setting = ['cat'=>true,'date'=>true,'desc'=>true]; //setting
+                set_query_var('setting', $setting); //settingを渡す
+                get_template_part('components/entry-list__item');
+            endforeach;
+            wp_reset_postdata();
+        ?>
+        </ul>
+        <a class="readmore" href="/blog/page/2">もっと見る</a>
     <?php endif; ?>
-                    <div class="entry-list__meta">
-                        <time class="entry-list__time" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>">
-                            <?php echo get_the_date(); ?>
-                        </time>
-                        <div class="entry-list__category">
-                        <?php
-                            $cats = get_the_category();
-                            foreach($cats as $cat):
-                        ?>
-                            <span class="entry-list__category-item"><?php echo $cat->cat_name; ?></span>
-                        <?php endforeach; ?>
-                        </div>
-                    </div>
-                </section>
-				<a class="entry-list__link" href="<?php the_permalink(); ?>"></a>
-			</li>
-<?php endforeach; endif; ?>
-		</ul>
-        <a class="readmore" href="/blog/page/2">Read More</a>
+    </section>
+        
+</div>
 
-<?php if (!$is_sp): ?>
-        <div class="sticky sticky--index">
-            <div class="sticky__body">
-                <h5 class="sticky__title">Media</h5>
-                <div class="sticky__share">
-                    <a class="sticky__share-item" href="//lostmortal.bandcamp.com/" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/asset/img/icon-bandcamp.svg" alt="bandcamp">
-                    </a>
-                    <a class="sticky__share-item" href="//www.youtube.com/channel/UCs_Vj9mIZBkg1ViybF409-A" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/asset/img/icon-youtube.svg" alt="youtube">
-                    </a>
-                    <a class="sticky__share-item" href="//soundcloud.com/hardcoreforever777-1" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/asset/img/icon-soundcloud.svg" alt="soundcloud">
-                    </a>
-                    <a class="sticky__share-item" href="//twitter.com/JTTSofficial" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/asset/img/icon-twitter.svg?1" alt="twitter">
-                    </a>
-                </div>
-            </div>
-        </div>
-<?php endif; ?>
-	</div>
-    <?php if(!$is_sp) { get_sidebar(); } else { get_template_part('sidebar_sp'); } ?>
+<?php if(wp_is_mobile()) { get_sidebar(); } else { get_template_part('sidebar_pc'); } ?>
+
 </main>
 
-@endsection
+</div>
+
+<?php get_footer(); ?>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "<?php echo get_home_url(); ?>",
+    "name": "<?php bloginfo('name'); ?>",
+    "description": "<?php bloginfo('description'); ?>",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Lostmortal",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<?php echo get_home_url(); ?>/wp-content/uploads/2018/08/jksample.jpg",
+            "width": 1500,
+            "height": 1500
+        }
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "<?php echo get_home_url(); ?>/wp-content/uploads/2018/08/jksample.jpg",
+        "width": 1500,
+        "height": 1500
+    }
+}
+</script>

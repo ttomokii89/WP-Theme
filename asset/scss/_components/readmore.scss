@@ -1,0 +1,41 @@
+@import "../_lib/variable";
+
+
+//-------------------------
+//readmore
+//-------------------------
+
+.readmore {
+    margin: 20px auto 0;
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    @include tb {
+        margin: 20px 20px 0;
+        font-size: 18px;
+    }
+    @include sp {
+        margin: 18px 15px 0;
+        font-size: 15px;
+    }
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 5px;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        border-color: $color-link;
+        transform: rotate(45deg);
+        position: relative;
+        top: -1px;
+    }
+    @include pc {
+        &:hover::before{
+            opacity: .8;
+        }
+    }
+}
